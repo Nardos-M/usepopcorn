@@ -53,10 +53,10 @@ const average = (arr) =>
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
-  
-  // we solved the problem of prop drilling by component composition 
+
+  // we solved the problem of prop drilling by component composition
   // or children argen keza we gust the sent the needed component only
-  
+
   return (
     <>
       <NavBar>
@@ -65,6 +65,20 @@ export default function App() {
       </NavBar>
 
       <Main>
+
+        {/* this is another way of writing the children or prop by 
+        element which  looks very good*/}
+        {/* <Box element={<MovieList movies={movies} />} />
+
+        <Box
+          element={
+            <>
+              <WatchedSummary watched={watched} />
+              <WatchedMoviesList watched={watched} />
+            </>
+          }
+        /> */}
+
         <Box>
           <MovieList movies={movies} />
         </Box>
@@ -126,10 +140,7 @@ function Box({ children }) {
 
   return (
     <div className="box">
-      <button
-        className="btn-toggle"
-        onClick={() => setIsOpen((open) => !open)}
-      >
+      <button className="btn-toggle" onClick={() => setIsOpen((open) => !open)}>
         {isOpen ? "–" : "+"}
       </button>
 
@@ -186,8 +197,6 @@ function Movie({ movie }) {
     </ul>
   );
 }
-
-
 
 // the 3 variables down there are derived states
 // they depend on the state watched so we send the state
